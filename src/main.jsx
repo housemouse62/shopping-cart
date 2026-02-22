@@ -1,10 +1,37 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { ProductsDataProvider } from "./ProductsContext.jsx";
+import ErrorPage from "./ErrorPage.jsx";
+import App from "./App.jsx";
+import Items from "./Items.jsx";
+import Beauty from "./components/beauty.jsx";
+import Fragrances from "./components/fragrances.jsx";
+import Grocery from "./components/grocery.jsx";
+import Furniture from "./components/furniture.jsx";
 
-createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "items",
+    element: <Items />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: "beauty", element: <Beauty /> },
+      { path: "fragrances", element: <Fragrances /> },
+      { path: "grocery", element: <Grocery /> },
+      { path: "furniture", element: <Furniture /> },
+    ],
+  },
+]);
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <ProductsDataProvider>
+      <RouterProvider router={router} />
+    </ProductsDataProvider>
   </StrictMode>,
-)
+);

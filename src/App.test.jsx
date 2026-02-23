@@ -18,10 +18,21 @@ describe("Shopping App Component", () => {
   it("Main sidebar renders with all categories", () => {
     renderWithRouter(<App />);
 
-    const shop = screen.findByText("shop", { name: /shop/i });
-    const home = screen.findByRole("home", { name: /home/i });
-    const cart = screen.findByRole("cart", { name: /cart/i });
+    const shop = screen.getByRole("link", { name: /shop/i });
+    const home = screen.getByRole("link", { name: /home/i });
+    const cart = screen.getByRole("link", { name: /cart/i });
 
-    expect(shop, home, cart).toBeVisible();
+    expect(home, shop, cart).toBeVisible();
+  });
+
+  it("main nav bar still visible when user clicks 'shop'", () => {
+    const user = userEvent.setup();
+    renderWithRouter(<App />);
+
+    const shop = screen.getByRole("link", { name: /shop/i });
+
+    user.click(shop);
+
+    expect(shop).toBeVisible();
   });
 });

@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { ProductsDataProvider } from "./ProductsContext.jsx";
 import ErrorPage from "./ErrorPage.jsx";
 import App from "./App.jsx";
-import Items from "./Items.jsx";
+import Shop from "./Shop.jsx";
 import Beauty from "./components/beauty.jsx";
 import Fragrances from "./components/fragrances.jsx";
 import Grocery from "./components/grocery.jsx";
@@ -15,16 +15,18 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "items",
-    element: <Items />,
-    errorElement: <ErrorPage />,
     children: [
-      { path: "beauty", element: <Beauty /> },
-      { path: "fragrances", element: <Fragrances /> },
-      { path: "grocery", element: <Grocery /> },
-      { path: "furniture", element: <Furniture /> },
+      {
+        path: "shop",
+        element: <Shop />,
+        errorElement: <ErrorPage />,
+        children: [
+          { path: "beauty", element: <Beauty /> },
+          { path: "fragrances", element: <Fragrances /> },
+          { path: "grocery", element: <Grocery /> },
+          { path: "furniture", element: <Furniture /> },
+        ],
+      },
     ],
   },
 ]);

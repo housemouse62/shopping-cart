@@ -1,0 +1,287 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* ============================================
+   MAIN APP LAYOUT (with persistent sidebar)
+   ============================================ */
+
+.container {
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  min-height: 100vh;
+}
+
+/* Main navigation sidebar */
+.sidebar {
+  display: flex;
+  background-color: #2c3e50;
+  padding: 2rem 1rem;
+  gap: 1rem;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background-color: #34495e;
+}
+
+/* Main content area */
+.main-screen {
+  padding: 2rem;
+  background-color: white;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* shop page */
+
+.shop-container {
+  display: grid;
+  grid-template-columns: 150px auto;
+}
+.items-sidebar {
+  background-color: #ecf0f1;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  height: 100%;
+}
+
+.items-sidebar h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.items-sidebar a {
+  display: block;
+  color: #3498db;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.items-sidebar a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* ============================================
+   PRODUCT CARDS
+   ============================================ */
+
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  min-height: 2.5rem;
+}
+
+.product-card p {
+  color: #555;
+  font-size: 0.9rem;
+  flex-grow: 1;
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.product-card button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.product-card button:hover {
+  background-color: #2980b9;
+}
+
+.product-card button:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   CART PAGE
+   ============================================ */
+
+.cart-container {
+  max-width: 800px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-info p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-quantity button {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.cart-quantity button:hover {
+  background-color: #7f8c8d;
+}
+
+.cart-quantity span {
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cart-total {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #333;
+  text-align: right;
+}
+
+.cart-total h2 {
+  font-size: 1.5rem;
+  color: #27ae60;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+}
+
+/* ============================================
+   CART BADGE (for navbar)
+   ============================================ */
+
+.cart-link {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    grid-row: 1;
+    flex-direction: row;
+    padding: 1rem;
+  }
+
+  .items-container {
+    grid-template-columns: 1fr;
+  }
+}

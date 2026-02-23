@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import Home from "./Home.jsx";
 import MainShop from "./MainShop.jsx";
 import Shop from "./Shop.jsx";
+import Cart from "./components/Cart.jsx";
 import Beauty from "./components/beauty.jsx";
 import Fragrances from "./components/fragrances.jsx";
 import Grocery from "./components/grocery.jsx";
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      { index: true, element: <Home />, errorElement: <ErrorPage /> },
       { path: "home", element: <Home />, errorElement: <ErrorPage /> },
       {
         path: "shop",
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
           { path: "grocery", element: <Grocery /> },
           { path: "furniture", element: <Furniture /> },
         ],
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },

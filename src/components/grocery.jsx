@@ -16,7 +16,6 @@ const Grocery = () => {
         <div key={product.id} className="product-card">
           <div className="card-upper">
             <h3>{product.title}</h3>
-            <h4>by: {product.brand}</h4>
             <img src={`${product.thumbnail}`} />
             <p>
               <i>{product.description}</i>

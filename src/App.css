@@ -14,71 +14,54 @@ body {
   background-color: #f5f5f5;
 }
 
-/* ============================================
-   MAIN APP LAYOUT (with persistent sidebar)
-   ============================================ */
+/* main app layout */
 
 .container {
   display: grid;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 75px 1fr;
   min-height: 100vh;
 }
 
 /* Main navigation sidebar */
-.sidebar {
+.navbar {
   display: flex;
   background-color: #2c3e50;
-  padding: 2rem 1rem;
   gap: 1rem;
 }
 
-.sidebar a {
+.navbar a {
   color: white;
   text-decoration: none;
-  padding: 0.75rem 1rem;
   border-radius: 4px;
   transition: background-color 0.2s;
   font-weight: 500;
 }
 
-.sidebar a:hover {
-  background-color: #34495e;
+.navbar a:hover {
+  background-color: rgb(52, 73, 94);
 }
 
 /* Main content area */
 .main-screen {
-  padding: 2rem;
   background-color: white;
-  margin: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* shop page */
-
 .shop-container {
   display: grid;
   grid-template-columns: 150px auto;
+  min-height: 100vh;
 }
 .items-sidebar {
   background-color: #ecf0f1;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
   height: 100%;
-}
-
-.items-sidebar h1 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #2c3e50;
 }
 
 .items-sidebar a {
   display: block;
-  color: #3498db;
+  color: rgb(52, 73, 94);
+  font-size: 1.5rem;
   text-decoration: none;
-  padding: 0.5rem 0;
   transition: color 0.2s;
 }
 
@@ -87,25 +70,23 @@ body {
   text-decoration: underline;
 }
 
-/* ============================================
-   PRODUCT CARDS
-   ============================================ */
+/* product cards */
 
 .items-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  padding: 1rem 0;
+  padding: 2rem;
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
   transition: box-shadow 0.2s;
 }
 
@@ -121,16 +102,30 @@ body {
 
 .product-card p {
   color: #555;
-  font-size: 0.9rem;
-  flex-grow: 1;
+  font-size: 1.2rem;
 }
 
-.product-price {
+.card-lower {
+  display: flex;
+  flex-direction: column;
+}
+.card-lowest {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.product-info {
   font-size: 1.25rem;
   font-weight: bold;
   color: #27ae60;
 }
 
+.card-price-button {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: space-between;
+}
 .product-card button {
   background-color: #3498db;
   color: white;

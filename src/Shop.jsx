@@ -6,22 +6,21 @@ const Shop = () => {
   const { products, loading } = useProducts();
 
   if (loading) return <div>Loading Products...</div>;
-
+  console.log(products.products);
   return (
     <div className="shop-container">
       <div className="items-sidebar">
-        <h1>Categories:</h1>
         <div>
-          <Link to="beauty">Beauty Products</Link>
+          <Link to="beauty">Beauty</Link>
           <br />
-          <Link to="fragrances">Fragrance Products</Link>
+          <Link to="fragrances">Fragrance</Link>
           <br />
-          <Link to="furniture">Furniture Products</Link>
+          <Link to="furniture">Furniture</Link>
           <br />
-          <Link to="grocery">Grocery Products</Link>
+          <Link to="grocery">Grocery</Link>
         </div>
       </div>
-      <div className="items-container">
+      <div>
         <Outlet />
       </div>
     </div>

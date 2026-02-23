@@ -6,7 +6,7 @@ import "./App.css";
 const App = () => {
   return (
     <div className="container">
-      <div className="sidebar">
+      <div className="navbar">
         <Link to="/">Home</Link>
         <br />
         <Link to="/shop">Shop</Link>

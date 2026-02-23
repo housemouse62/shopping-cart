@@ -1,6 +1,7 @@
 import { useProducts } from "./ProductsContext";
 import { Link } from "react-router";
 import { Outlet } from "react-router";
+import MainShop from "./MainShop";
 
 const Shop = () => {
   const { products, loading } = useProducts();
@@ -10,15 +11,13 @@ const Shop = () => {
   return (
     <div className="shop-container">
       <div className="items-sidebar">
-        <div>
-          <Link to="beauty">Beauty</Link>
-          <br />
-          <Link to="fragrances">Fragrance</Link>
-          <br />
-          <Link to="furniture">Furniture</Link>
-          <br />
-          <Link to="grocery">Grocery</Link>
-        </div>
+        <Link to="beauty">Beauty</Link>
+        <br />
+        <Link to="fragrances">Fragrance</Link>
+        <br />
+        <Link to="furniture">Furniture</Link>
+        <br />
+        <Link to="grocery">Grocery</Link>
       </div>
       <div>
         <Outlet />

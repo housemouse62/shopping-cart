@@ -147,4 +147,37 @@ describe("Shopping App Component", () => {
     const quantity = within(cartItem).getByText("2");
     expect(quantity).toBeInTheDocument("2");
   });
+
+  it("remove button removes item from cart", async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<App />);
+
+    const shop = screen.getByRole("link", { name: "Shop" });
+    await user.click(shop);
+
+    // Wait for Beauty link to appear (products loaded)
+    const beauty = await screen.findByRole("link", { name: /Beauty/i });
+    await user.click(beauty);
+
+    // Wait for mascara product to appear
+    const mascara = await screen.findByText(/by: essence/i);
+
+    // Find the product card, then find button within it
+    const productCard = mascara.closest(".product-card");
+    const addButton = within(productCard).getByRole("button", {
+      name: /add to cart/i,
+    });
+    await user.click(addButton);
+    await user.click(addButton);
+
+    const cart = screen.getByRole("link", { name: /cart/i });
+    await user.click(cart);
+
+    //Remove Item from Cart
+    const remove = screen.getByRole("button", { name: /remove/i });
+    await user.click(remove);
+
+    const mascaraCart = screen.queryByText(/mascara/i);
+    expect(mascaraCart).not.toBeInTheDocument;
+  });
 });

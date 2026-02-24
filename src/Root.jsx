@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { ProductsDataProvider } from "./ProductsContext.jsx";
+import { CartDataProvider } from "./CartContext.jsx";
 import ErrorPage from "./ErrorPage.jsx";
 import App from "./App.jsx";
 import Home from "./Home.jsx";
@@ -43,7 +44,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ProductsDataProvider>
-      <RouterProvider router={router} />
+      <CartDataProvider>
+        <RouterProvider router={router} />
+      </CartDataProvider>
     </ProductsDataProvider>
   </StrictMode>,
 );

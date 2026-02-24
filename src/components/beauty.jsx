@@ -1,8 +1,10 @@
+import { useCart } from "../CartContext";
 import { useProducts } from "../ProductsContext";
 import { Link } from "react-router";
 
 const Beauty = () => {
   const { products, loading } = useProducts();
+  const { addToCart } = useCart();
 
   if (loading) return <div>Products Loading</div>;
 
@@ -25,7 +27,13 @@ const Beauty = () => {
           <div className="card-lower">
             <div className="card-price-button">
               <p className="product-info">${product.price}</p>
-              <button>Add to Cart</button>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
             <div className="card-lowest">
               <p>

@@ -44,7 +44,9 @@ const renderWithRouter = (component, initialRoute = "/") => {
   );
   return render(
     <ProductsDataProvider>
-      <RouterProvider router={router} />
+      <CartDataProvider>
+        <RouterProvider router={router} />
+      </CartDataProvider>
     </ProductsDataProvider>,
   );
 };
@@ -110,5 +112,39 @@ describe("Shopping App Component", () => {
     // Wait for mascara to appear in cart
     const mascaraCart = await screen.findByText(/mascara/i);
     expect(mascaraCart).toBeVisible();
+  });
+
+  it("2 of the same item added to cart when user clicks 'add to cart' twice", async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<App />);
+
+    const shop = screen.getByRole("link", { name: "Shop" });
+    await user.click(shop);
+
+    // Wait for Beauty link to appear (products loaded)
+    const beauty = await screen.findByRole("link", { name: /Beauty/i });
+    await user.click(beauty);
+
+    // Wait for mascara product to appear
+    const mascara = await screen.findByText(/by: essence/i);
+
+    // Find the product card, then find button within it
+    const productCard = mascara.closest(".product-card");
+    const addButton = within(productCard).getByRole("button", {
+      name: /add to cart/i,
+    });
+    await user.click(addButton);
+    await user.click(addButton);
+
+    const cart = screen.getByRole("link", { name: /cart/i });
+    await user.click(cart);
+
+    // Wait for mascara to appear in cart
+    const mascaraCart = screen.getByText(/mascara/i);
+
+    //Find the item in the cart, then find the quantity of 2
+    const cartItem = mascaraCart.closest(".cart-item");
+    const quantity = within(cartItem).getByText("2");
+    expect(quantity).toBeInTheDocument("2");
   });
 });

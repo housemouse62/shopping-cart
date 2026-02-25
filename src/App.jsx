@@ -1,8 +1,12 @@
 import { Link } from "react-router";
 import { Outlet } from "react-router";
+import { useCart } from "./CartContext";
 import "./App.css";
+import shop_cart from "./assets/cart-outline.svg";
 
 const App = () => {
+  const { cart } = useCart();
+  console.log(shop_cart);
   return (
     <div className="container">
       <div className="navbar">
@@ -10,9 +14,11 @@ const App = () => {
           <Link to="/home">Home</Link>
           <Link to="/Shop">Shop</Link>
         </div>
-        <div className="nav-right">
-          <h3># Items</h3>
-          <Link to="/cart">Cart</Link>
+        <div className="nav-right cart-link">
+          <h3 className="cart-badge">{cart.length}</h3>
+          <Link to="/cart">
+            <img src={shop_cart} />
+          </Link>
         </div>
       </div>
       <div className="main-screen">

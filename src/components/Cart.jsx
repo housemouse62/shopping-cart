@@ -4,7 +4,6 @@ import { useCart } from "../CartContext";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
-  console.log(cart.length);
   if (cart.length === 0) {
     return (
       <div className="empty-cart-message">
@@ -16,43 +15,52 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-page">
+    <div className="cart-container">
       <h1>Shopping Cart</h1>
 
       <div className="cart-items-list">
         {cart.map((item) => (
           <div key={item.id} className="cart-item">
-            <div className="cart-item-info">
-              <h3>{item.title}</h3>
+            <div className="cart-item-image">
+              <img src={item.image} className="item-image" />
             </div>
-
-            <div className="cart-item-price">${item.price.toFixed(2)}</div>
-
-            <div className="cart-quantity-controls">
-              <button
-                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-              >
-                -
-              </button>
-              <span>{item.quantity}</span>
-              <button
-                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-              >
-                +
-              </button>
+            <div className="cart-item-info-and-price">
+              <div className="cart-item-info">
+                <h3>{item.title}</h3>
+                <div className="quantity-div">
+                  <div className="cart-quantity-controls">
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="remove-div">
+                    <button
+                      className="remove-button"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="cart-item-price">${item.price.toFixed(2)}</div>
             </div>
-
-            <button
-              className="remove-button"
-              onClick={() => removeFromCart(item.id)}
-            >
-              Remove
-            </button>
           </div>
         ))}
       </div>
-
-      {/* AZ</div> */}
+      <div className="total-area">
+        <span>
+          <h2>Total: {getCartTotal(cart)}</h2>
+        </span>
+      </div>
     </div>
   );
 };

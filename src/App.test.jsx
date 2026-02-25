@@ -180,4 +180,45 @@ describe("Shopping App Component", () => {
     const mascaraCart = screen.queryByText(/mascara/i);
     expect(mascaraCart).not.toBeInTheDocument;
   });
+
+  it("updates quantity of item in cart when user clicks the '+' button", async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<App />);
+
+    const shop = screen.getByRole("link", { name: "Shop" });
+    await user.click(shop);
+
+    // Wait for Beauty link to appear (products loaded)
+    const beauty = await screen.findByRole("link", { name: /Beauty/i });
+    await user.click(beauty);
+
+    // Wait for mascara product to appear
+    const mascara = await screen.findByText(/by: essence/i);
+
+    // Find the product card, then find button within it
+    const productCard = mascara.closest(".product-card");
+    const addButton = within(productCard).getByRole("button", {
+      name: /add to cart/i,
+    });
+
+    // Add 2 mascara to cart
+    await user.click(addButton);
+    await user.click(addButton);
+
+    // Navigate to cart
+    const cart = screen.getByRole("link", { name: /cart/i });
+    await user.click(cart);
+
+    // Wait for mascara to appear in cart & find item
+    const mascaraCart = screen.getByText(/mascara/i);
+    const cartItem = mascaraCart.closest(".cart-item");
+
+    // Find '+' button within mascara item & click
+    const add = within(cartItem).getByRole("button", { name: "+" });
+    await user.click(add);
+
+    // Find quantity and ensure it has increased to '3'
+    const quantity = within(cartItem).getByText("3");
+    expect(quantity).toBeInTheDocument;
+  });
 });

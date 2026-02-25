@@ -1,8 +1,10 @@
 import { useProducts } from "../ProductsContext";
 import { Link } from "react-router";
+import { useCart } from "../CartContext";
 
 const Furniture = () => {
   const { products, loading } = useProducts();
+  const { addToCart } = useCart();
 
   if (loading) return <div>Products Loading</div>;
 
@@ -17,7 +19,7 @@ const Furniture = () => {
           <div className="card-upper">
             <h3>{product.title}</h3>
             <h4>by: {product.brand}</h4>
-            <img src={`${product.thumbnail}`} />
+            <img src={`${product.thumbnail}`} alt={product.title} />
             <p>
               <i>{product.description}</i>
             </p>
@@ -25,7 +27,13 @@ const Furniture = () => {
           <div className="card-lower">
             <div className="card-price-button">
               <p className="product-info">${product.price}</p>
-              <button>Add to Cart</button>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
             <div className="card-lowest">
               <p>

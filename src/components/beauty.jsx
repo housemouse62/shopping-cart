@@ -19,7 +19,7 @@ const Beauty = () => {
           <div className="card-upper">
             <h3>{product.title}</h3>
             <h4>by: {product.brand}</h4>
-            <img src={`${product.thumbnail}`} />
+            <img src={`${product.thumbnail}`} alt={product.title} />
             <p>
               <i>{product.description}</i>
             </p>

@@ -3,7 +3,8 @@ import { Link } from "react-router";
 import { useCart } from "../CartContext";
 
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
+  const { cart, removeFromCart, updateQuantity, getCartTotal, totalItems } =
+    useCart();
   if (cart.length === 0) {
     return (
       <div className="empty-cart-message">
@@ -58,7 +59,8 @@ const Cart = () => {
       </div>
       <div className="total-area">
         <span>
-          <h2>Total: {getCartTotal(cart)}</h2>
+          <h2>Total: {getCartTotal(cart).toFixed(2)}</h2>
+          <h3>Items: {totalItems(cart)}</h3>
         </span>
       </div>
     </div>

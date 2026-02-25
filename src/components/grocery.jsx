@@ -1,8 +1,10 @@
 import { useProducts } from "../ProductsContext";
 import { Link } from "react-router";
+import { useCart } from "../CartContext";
 
 const Grocery = () => {
   const { products, loading } = useProducts();
+  const { addToCart } = useCart();
 
   if (loading) return <div>Products Loading</div>;
 
@@ -16,7 +18,7 @@ const Grocery = () => {
         <div key={product.id} className="product-card">
           <div className="card-upper">
             <h3>{product.title}</h3>
-            <img src={`${product.thumbnail}`} />
+            <img src={`${product.thumbnail}`} alt={product.title} />
             <p>
               <i>{product.description}</i>
             </p>
@@ -24,7 +26,13 @@ const Grocery = () => {
           <div className="card-lower">
             <div className="card-price-button">
               <p className="product-info">${product.price}</p>
-              <button>Add to Cart</button>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
             <div className="card-lowest">
               <p>

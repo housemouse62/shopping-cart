@@ -5,7 +5,7 @@ import "./App.css";
 import shop_cart from "./assets/cart-outline.svg";
 
 const App = () => {
-  const { cart } = useCart();
+  const { cart, totalItems } = useCart();
   console.log(shop_cart);
   return (
     <div className="container">
@@ -15,9 +15,9 @@ const App = () => {
           <Link to="/Shop">Shop</Link>
         </div>
         <div className="nav-right cart-link">
-          <h3 className="cart-badge">{cart.length}</h3>
+          <h3 className="cart-badge">{totalItems(cart)}</h3>
           <Link to="/cart">
-            <img src={shop_cart} />
+            <img src={shop_cart} alt="cart" />
           </Link>
         </div>
       </div>

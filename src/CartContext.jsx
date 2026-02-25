@@ -57,7 +57,6 @@ export const CartDataProvider = ({ children }) => {
   };
 
   const totalItems = (cart) => {
-    console.log(cart);
     const total = cart.reduce((total, item) => total + item.quantity, 0);
     return total;
   };

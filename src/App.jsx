@@ -6,7 +6,6 @@ import shop_cart from "./assets/cart-outline.svg";
 
 const App = () => {
   const { cart, totalItems } = useCart();
-  console.log(shop_cart);
   return (
     <div className="container">
       <div className="navbar">

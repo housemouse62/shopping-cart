@@ -8,7 +8,6 @@ const Shop = () => {
 
   if (!products) return <div>Loading Products</div>;
   if (loading) return <div>Loading Products...</div>;
-  console.log(products.products);
   return (
     <div className="shop-container">
       <div className="items-sidebar">

@@ -1,16 +1,58 @@
-# React + Vite
+# Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React practice project — a multi-category e-commerce shop with a fully functional shopping cart.
 
-Currently, two official plugins are available:
+![Shopping Cart Preview](src/assets/shopping%20cart%20grab.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Browse products across four categories: Beauty, Fragrance, Furniture, and Grocery
+- Products fetched live from the [DummyJSON API](https://dummyjson.com/products)
+- Add items to the cart directly from the shop
+- Cart badge in the navbar shows the live item count
+- Cart page with quantity controls (+/-), item removal, and a running total
+- Empty cart state with a link back to the shop
+- Client-side routing via React Router
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** — UI and component logic
+- **React Router 7** — client-side routing with nested routes
+- **Vite** — dev server and build tool
+- **Context API** — shared state for cart and product data (`CartContext`, `ProductsContext`)
+- **Vitest + Testing Library** — unit and component testing
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Other scripts:
+
+```bash
+npm test      # run tests with Vitest
+npm run build # production build
+npm run lint  # ESLint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── beauty.jsx       # Beauty category products
+│   ├── fragrances.jsx   # Fragrance category products
+│   ├── furniture.jsx    # Furniture category products
+│   ├── grocery.jsx      # Grocery category products
+│   └── Cart.jsx         # Cart page
+├── CartContext.jsx       # Cart state: add, remove, update quantity, totals
+├── ProductsContext.jsx   # Fetches products from DummyJSON API
+├── App.jsx              # Navbar with cart icon and badge
+├── Shop.jsx             # Shop layout with category sidebar
+├── MainShop.jsx         # Default shop view
+├── Home.jsx             # Home page
+├── Root.jsx             # Route definitions
+└── ErrorPage.jsx        # 404 / error boundary page
+```
